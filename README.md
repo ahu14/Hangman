@@ -1,3 +1,3 @@
-"# Hangman" 
+# Hangman
 
-Hangman game using vanilla javascript
+Hangman game using HTML, CSS, Vanilla Javascript
