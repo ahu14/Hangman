@@ -5,11 +5,14 @@ let listWords = [
   {'word' : 'lemon', 'clue' : 'taste sour'},
   {'word' : 'water', 'clue' : 'something you drink everyday'},
   {'word' : 'umbrella', 'clue' : 'suddenly vanishing when it\'s on rainy day'},
-  {'word' : 'laptop', 'clue' : 'you play this game at ...'},
+  {'word' : 'laptop', 'clue' : 'computer lite version'},
   {'word' : 'soda', 'clue' : 'you get diabetes when you drink it too much'},
   {'word' : 'banana', 'clue' : 'the yellow one'},
   {'word' : 'bottle', 'clue' : 'to keep your water in a place'},
   {'word' : 'shampoo', 'clue' : 'make your hair clean'},
+  {'word' : 'blanket', 'clue' : 'the one you use to make you warm'},
+  {'word' : 'backpack', 'clue' : 'you can carry all your treasure by using this'},
+  {'word' : 'coffee', 'clue' : 'something that keep you stay alive at 3 AM'}
 ];
 
 let player = {
