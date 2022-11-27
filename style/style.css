@@ -75,7 +75,31 @@ p, #clue{
   font-size: 15px;
 
   box-shadow: 2.5px 2.5px 3px #999, -1px -1px 3px #ddd;
+  border-radius: 4px;
   cursor: pointer;
+}
+
+.clue-btn{
+  align-self: center;
+  text-align: center;
+
+  width: 40%;
+  padding: 10px 12px;
+
+  font-family: Inter;
+  font-size: 17px;
+
+  border-radius: 4px;
+  border: 2px solid #000;
+
+  background: transparent;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.clue-btn:hover{
+  background: #000;
+  color: #fdfdfd;
 }
 
 
@@ -101,5 +125,9 @@ p, #clue{
 
   .keyboard-row{
     gap: 1rem;
+  }
+
+  .btn{
+    width: 20%;
   }
 }

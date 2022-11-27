@@ -1,12 +1,14 @@
 export default class Hangman{
-    constructor(data, word, clue, score, image, btn){
+    constructor(data, word, clue, score, image, clue_btn, btn){
         this.data = data;
         this.word = word;
         this.clue = clue;
         this.score = score;
         this.image = image;
+        this.clueBtn = clue_btn;
         this.btn = btn;
 
+        this.index = -1;
         this.life = 0;
         this.scoreNum = 0;
         this.imageId = 0;
@@ -19,7 +21,8 @@ export default class Hangman{
     }
 
     randomNum(){
-        return Math.floor(Math.random() * this.data.length);
+        this.index >= this.data.length ? this.index = 0 : this.index++;
+        return this.index;
     }
 
     getData(){
@@ -35,6 +38,9 @@ export default class Hangman{
 
     gameStart(){
         this.fillBlankWord(this.gameData.word);
+        this.clueBtn.style.display = "none";
+        this.clueBtn.pointerEvents = "none";
+
         this.word.innerHTML = this.blankWord;
         this.clue.innerHTML = this.gameData.clue;
         this.score.innerHTML = this.scoreNum;
@@ -51,6 +57,7 @@ export default class Hangman{
         this.seperatedWord = this.randomWord.split('');
 
         this.imageId = 0;
+        this.life = 0;
 
         for (let a of this.btn){
             a.style.background = "#fff";
@@ -59,13 +66,27 @@ export default class Hangman{
         this.gameStart();
     }
 
+    giveClue(){
+        for (let i in this.blankWord){
+            if (this.blankWord[i] === '_'){
+                this.blankWord[i] = this.seperatedWord[i];
+                this.word.innerHTML = this.blankWord;
+
+                this.clueBtn.style.display = "none";
+                this.clueBtn.pointerEvents = "none";
+
+                setTimeout(() => this.checkWord(this.blankWord[i]), 1000);
+                break;
+            }
+        }
+    }
+
     checkWord(clickedWord){
         if (this.seperatedWord.includes(clickedWord)){
             for (let a in this.seperatedWord){
                 if (this.seperatedWord[a] === clickedWord){
                     this.blankWord[a] = clickedWord;
                     this.word.innerHTML = this.blankWord;
-                    this.usedWord.push(clickedWord);
                 }
             }
 
@@ -80,19 +101,14 @@ export default class Hangman{
         }
 
         else{
-            console.log(this.life);
             if (this.life > 9){
                 alert('you lose !');
                 window.location.reload();
             }
 
-            else if (this.life >= 3){
-                let wordLength = this.gameData.word.length;
-                let randomIndex = Math.floor(Math.random() * wordLength);
-                let help = this.gameData.word;
-
-                this.blankWord[randomIndex] = help[randomIndex];
-                this.word.innerHTML = this.blankWord;
+            else if (this.life >= 4){
+                this.clueBtn.style.display = "block";
+                this.clueBtn.pointerEvents = "auto";
             }
 
             else{

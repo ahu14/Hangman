@@ -1,10 +1,14 @@
 import Hangman from "./Hangman.js";
 
+let timeRemaining = 60;
+
+let time = document.querySelector('#time');
 let word = document.querySelector('#word');
 let clue = document.querySelector('#clue');
 let image = document.querySelector('.image');
 let score = document.querySelector('#score');
 
+let clue_btn = document.querySelector('.clue-btn');
 let keyboard_btn = document.querySelectorAll('.keyboard-btn');
 
 
@@ -13,7 +17,7 @@ fetch('./script/listWords.json')
 .then(data => {
     let game = new Hangman(
         data, word, clue, score,
-        image, keyboard_btn
+        image, clue_btn, keyboard_btn
     );
     game.gameStart();
 
@@ -40,6 +44,10 @@ fetch('./script/listWords.json')
             btn.style.background = '#ee0000';
             game.checkWord(lowerText);
         }
+    })
+
+    clue_btn.addEventListener('click', (event) => {
+        game.giveClue();
     })
 })
 .catch(err => console.log(err))
