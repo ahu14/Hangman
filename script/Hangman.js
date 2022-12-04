@@ -21,7 +21,7 @@ export default class Hangman{
     }
 
     randomNum(){
-        this.index >= this.data.length ? this.index = 0 : this.index++;
+        this.index >= this.data.length - 1 ? this.index : this.index++;
         return this.index;
     }
 
@@ -56,9 +56,6 @@ export default class Hangman{
         this.randomWord = this.gameData.word;
         this.seperatedWord = this.randomWord.split('');
 
-        this.imageId = 0;
-        this.life = 0;
-
         for (let a of this.btn){
             a.style.background = "#fff";
         }
@@ -75,7 +72,7 @@ export default class Hangman{
                 this.clueBtn.style.display = "none";
                 this.clueBtn.pointerEvents = "none";
 
-                setTimeout(() => this.checkWord(this.blankWord[i]), 1000);
+                setTimeout(() => this.checkWord(this.blankWord[i]), 800);
                 break;
             }
         }
@@ -91,32 +88,45 @@ export default class Hangman{
             }
 
             if (!this.blankWord.includes('_')){
-                this.word.innerHTML = "you win !";
-
                 this.scoreNum += 1;
                 this.score.innerHTML = this.scoreNum;
 
-                setTimeout(() => this.youWin(), 1000);
+                if (this.scoreNum >= this.data.length){
+                    this.word.innerHTML = "Wow ! You completed the game !";
+                }
+
+                else{
+                    if (this.scoreNum % 2 === 0){
+                        this.word.innerHTML = "good job !"
+                    }
+    
+                    else{
+                        this.word.innerHTML = "that's right !"
+                    }
+                }
+
+                setTimeout(() => this.youWin(), 800);
             }
         }
 
         else{
             if (this.life > 9){
-                alert('you lose !');
+                alert(`You Lose ! Your Score : ${this.scoreNum}`);
                 window.location.reload();
             }
 
-            else if (this.life >= 4){
+            else if (this.life === 4){
                 this.clueBtn.style.display = "block";
                 this.clueBtn.pointerEvents = "auto";
             }
 
             else{
                 this.usedWord.push(clickedWord);
-                this.life += 1;
-                this.imageId += 1;
-                this.image.src = `./Assets/hangman/${this.imageId}.jpg`;
             }
+
+            this.life += 1;
+            this.imageId += 1;
+            this.image.src = `./Assets/hangman/${this.imageId}.jpg`;
         }
     }
 }
