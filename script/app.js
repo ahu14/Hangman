@@ -1,15 +1,15 @@
 import Hangman from "./Hangman.js";
 
-let timeRemaining = 60;
-
-let time = document.querySelector('#time');
 let word = document.querySelector('#word');
 let clue = document.querySelector('#clue');
 let image = document.querySelector('.image');
-let score = document.querySelector('#score');
+let score = document.querySelectorAll('#score');
 
 let clue_btn = document.querySelector('.clue-btn');
 let keyboard_btn = document.querySelectorAll('.keyboard-btn');
+let notif_box = document.querySelector('.notif-box');
+let refresh_btn = document.querySelector('.refresh-btn');
+
 
 
 let shuffleData = (data) => {
@@ -27,18 +27,20 @@ let shuffleData = (data) => {
     return data;
 }
 
+
+
 fetch('./script/listWords.json')
 .then(res => res.json())
 .then(data => {
     let newData = shuffleData(data);
 
     let game = new Hangman(
-        newData, word, clue, score,
-        image, clue_btn, keyboard_btn
+        newData, word, clue, score, image, 
+        clue_btn, keyboard_btn, notif_box
     );
     game.gameStart();
 
-    document.addEventListener('keyup', (event) => {
+    document.onkeyup = (event) => {
         if (!game.usedWord.includes(event.key)){
             game.checkWord(event.key);
 
@@ -50,9 +52,9 @@ fetch('./script/listWords.json')
                 }
             }
         }  
-    })
+    }
 
-    document.body.addEventListener('click', (event) => {
+    document.body.onclick = (event) => {
         let btn = event.target;
         let lowerText = btn.innerText.toLowerCase();
 
@@ -61,10 +63,14 @@ fetch('./script/listWords.json')
             btn.style.background = '#ee0000';
             game.checkWord(lowerText);
         }
-    })
+    }
 
-    clue_btn.addEventListener('click', (event) => {
+    clue_btn.onclick = (event) => {
         game.giveClue();
-    })
+    }
+
+    refresh_btn.onclick = (event) => {
+        window.location.reload();
+    }
 })
 .catch(err => console.log(err))

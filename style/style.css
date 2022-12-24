@@ -27,9 +27,8 @@ body{
 }
 
 .image{
-  margin-top: 2.7rem;
-  width: 30vh;
-  height: 70%;
+  width: 40vw;
+  height: auto;
   box-shadow: -1px -1px 3px #ddd, 2px 2px 5px #999;
 }
 
@@ -47,9 +46,10 @@ body{
   letter-spacing: 10px;
 }
 
-p, #clue{
+p, #clue, #score{
   font-family: Inter;
 }
+
 
 
 .keyboard{
@@ -86,7 +86,9 @@ p, #clue{
   cursor: pointer;
 }
 
-.clue-btn{
+
+
+.clue-btn, .refresh-btn{
   align-self: center;
   text-align: center;
 
@@ -104,10 +106,37 @@ p, #clue{
   transition: 0.2s;
 }
 
-.clue-btn:hover{
+.clue-btn{
+  display: none;
+}
+
+.clue-btn:hover, .refresh-btn:hover{
   background: #000;
   color: #fdfdfd;
 }
+
+
+
+.box .notif-box{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+
+  display: none;
+  align-items: space-evenly;
+  justify-content: center;
+  flex-direction: column;
+
+  width: 80vw;
+  height: 20vh;
+
+  background: #bbb;
+}
+
+#notif-message{
+  font-family: Inter;
+}
+
 
 
 @media screen and (min-width: 768px){
@@ -136,5 +165,10 @@ p, #clue{
 
   .btn{
     width: 20%;
+  }
+
+  .box .notif-box{
+    width: 40vw;
+    height: 40vh;
   }
 }
