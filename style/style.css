@@ -46,7 +46,7 @@ body{
   letter-spacing: 10px;
 }
 
-p, #clue, #score{
+p, #clue, #score, #time{
   font-family: Inter;
 }
 

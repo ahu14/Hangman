@@ -10,6 +10,36 @@ let keyboard_btn = document.querySelectorAll('.keyboard-btn');
 let notif_box = document.querySelector('.notif-box');
 let refresh_btn = document.querySelector('.refresh-btn');
 
+let notif_message = document.querySelector('#notif-message');
+let time = document.querySelector('#time');
+let timeNum = 60;
+time.innerHTML = timeNum;
+
+
+
+function printFrame(){
+    let frame = requestAnimationFrame(printFrame);
+
+    if (timeNum < 1){
+        document.onkeyup = () => {}
+        document.body.onclick = () => {}
+        clue_btn.onclick = () => {}
+
+        notif_box.style.display = "flex";
+        notif_message.innerHTML = "Time's up";
+    }
+
+    else{
+        if (frame % 60 == 0 && 
+            notif_box.style.display != "flex"){
+            timeNum -= 1;
+            time.innerHTML = timeNum;
+        }
+    }
+}
+
+requestAnimationFrame(printFrame)
+
 
 
 let shuffleData = (data) => {
@@ -36,7 +66,7 @@ fetch('./script/listWords.json')
 
     let game = new Hangman(
         newData, word, clue, score, image, 
-        clue_btn, keyboard_btn, notif_box
+        clue_btn, keyboard_btn, notif_box, time, timeNum
     );
     game.gameStart();
 

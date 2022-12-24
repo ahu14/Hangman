@@ -90,7 +90,7 @@ export default class Hangman{
         this.image.src = `./Assets/hangman/${this.imageId}.jpg`;
     }
 
-    gameOver(){
+    freezeScreen(){
         document.onkeyup = () => {}
         document.body.onclick = () => {}
         this.clueBtn.onclick = () => {}
@@ -109,8 +109,10 @@ export default class Hangman{
                 this.scoreNum += 1;
                 this.updateScore();
 
-                if (this.scoreNum >= this.data.length){
-                    this.word.innerHTML = "Wow ! You completed the game !";
+                if (this.scoreNum == this.data.length){
+                    this.freezeScreen();
+                    this.notifBox.style.display = "flex";
+                    this.notifBox.children[0].innerHTML = "Wow ! Good Job !";
                 }
 
                 else{
@@ -129,7 +131,7 @@ export default class Hangman{
 
         else{
             if (this.life > 8){
-                this.gameOver()
+                this.freezeScreen()
                 
                 this.life = 9;
                 this.imageId = 10;
