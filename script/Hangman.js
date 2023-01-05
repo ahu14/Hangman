@@ -63,7 +63,8 @@ export default class Hangman{
         this.seperatedWord = this.randomWord.split('');
 
         for (let a of this.keyboardBtn){
-            a.style.background = "#fff";
+            a.style.background = "#f91a10";
+            a.style.color = "#000";
         }
 
         this.gameStart();

@@ -78,7 +78,8 @@ fetch('./script/listWords.json')
                 let lowerText = i.innerText.toLowerCase();
     
                 if (lowerText === event.key){
-                    i.style.background = '#ee0000';
+                    i.style.background = '#3c0f0f';
+                    i.style.color = '#edb195';
                 }
             }
         }  
@@ -90,7 +91,8 @@ fetch('./script/listWords.json')
 
         if (btn.className === 'keyboard-btn' &&
             !game.usedWord.includes(lowerText)){
-            btn.style.background = '#ee0000';
+            btn.style.background = '#3c0f0f';
+            btn.style.color = '#edb195';
             game.checkWord(lowerText);
         }
     }

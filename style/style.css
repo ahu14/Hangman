@@ -12,7 +12,7 @@
 body{
   margin: 0;
   padding: 0;
-  background: #ddd;
+  background: #edb195;
 }
 
 .box{
@@ -29,7 +29,7 @@ body{
 .image{
   width: 40vw;
   height: auto;
-  box-shadow: -1px -1px 3px #ddd, 2px 2px 5px #999;
+  box-shadow: 2px 2px 5px #e46b43;
 }
 
 
@@ -43,11 +43,18 @@ body{
 
 #word{
   font-size: 25px;
-  letter-spacing: 10px;
+  letter-spacing: 8px;
+  color: #3c0f0f;
 }
 
 p, #clue, #score, #time{
   font-family: Inter;
+  color: #3c0f0f;
+}
+
+#time{
+  font-weight: bold;
+  color: #f91a10;
 }
 
 
@@ -80,8 +87,8 @@ p, #clue, #score, #time{
   font-family: Prata;
   font-size: 15px;
 
-  background: #fdfdfd;
-  box-shadow: 2.5px 2.5px 3px #999, -1px -1px 3px #ddd;
+  color: #3c0f0f;
+  background: #f91a10;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -99,9 +106,9 @@ p, #clue, #score, #time{
   font-size: 17px;
 
   border-radius: 4px;
-  border: 2px solid #000;
+  border: none;
 
-  background: transparent;
+  background: #f91a10;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -111,7 +118,7 @@ p, #clue, #score, #time{
 }
 
 .clue-btn:hover, .refresh-btn:hover{
-  background: #000;
+  background: #3c0f0f;
   color: #fdfdfd;
 }
 
@@ -130,7 +137,9 @@ p, #clue, #score, #time{
   width: 80vw;
   height: 35vh;
 
-  background: #bbb;
+  background: #edb195;
+  border-radius: 4px;
+  border: 2px solid #3c0f0f;
 }
 
 #notif-message{
