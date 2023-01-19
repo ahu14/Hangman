@@ -17,10 +17,19 @@ time.innerHTML = timeNum;
 
 
 
-function printFrame(){
-    let frame = requestAnimationFrame(printFrame);
+let startTime;
+let lastNum;
+function printFrame(timee){
+    if (startTime == undefined){
+        startTime = Math.round(timee / 1000);
+    }
 
-    if (timeNum < 1){
+    if (lastNum == undefined || lastNum != Math.round(timee / 1000) - startTime){
+        lastNum = Math.round(timee / 1000) - startTime;
+    }
+
+
+    if (timeNum - lastNum < 0){
         document.onkeyup = () => {}
         document.body.onclick = () => {}
         clue_btn.onclick = () => {}
@@ -30,12 +39,12 @@ function printFrame(){
     }
 
     else{
-        if (frame % 60 == 0 && 
-            notif_box.style.display != "flex"){
-            timeNum -= 1;
-            time.innerHTML = timeNum;
+        if (notif_box.style.display != "flex"){
+            time.innerHTML = timeNum - lastNum;
         }
     }
+
+    requestAnimationFrame(printFrame);
 }
 
 requestAnimationFrame(printFrame)
@@ -59,9 +68,18 @@ let shuffleData = (data) => {
 
 
 
-fetch('./script/listWords.json')
-.then(res => res.json())
-.then(data => {
+async function getData(){
+    let response = await fetch('./script/listWords.json');
+
+    if (!response.ok){
+        throw new Error(response.status);
+    }
+
+    let data = await response.json();
+    return data;
+}
+
+getData().then(data => {
     let newData = shuffleData(data);
 
     let game = new Hangman(
@@ -105,4 +123,3 @@ fetch('./script/listWords.json')
         window.location.reload();
     }
 })
-.catch(err => console.log(err))
