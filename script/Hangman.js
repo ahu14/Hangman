@@ -50,7 +50,7 @@ export default class Hangman{
 
         this.word.innerHTML = this.blankWord;
         this.clue.innerHTML = this.gameData.clue;
-        this.image.src = `./Assets/hangman/${this.imageId}.jpg`;
+        this.image.src = `./assets/hangman/${this.imageId}.jpg`;
     }
 
     youWin(){
@@ -88,7 +88,7 @@ export default class Hangman{
     updateImage(){
         this.life += 1;
         this.imageId += 1;
-        this.image.src = `./Assets/hangman/${this.imageId}.jpg`;
+        this.image.src = `./assets/hangman/${this.imageId}.jpg`;
     }
 
     freezeScreen(){
@@ -136,7 +136,7 @@ export default class Hangman{
                 
                 this.life = 9;
                 this.imageId = 10;
-                this.image.src = `./Assets/hangman/${this.imageId}.jpg`;
+                this.image.src = `./assets/hangman/${this.imageId}.jpg`;
 
                 this.notifBox.style.display = "flex";
             }
