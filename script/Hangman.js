@@ -1,3 +1,5 @@
+import EventEmitter from "./events.js";
+
 export default class Hangman{
     constructor(data, word, clue, score, image, clue_btn, keyboardBtn, notif_box){
         this.data = data;
