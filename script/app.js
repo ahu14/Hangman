@@ -1,3 +1,5 @@
+import { removeListener, addListener } from "./listener.js";
+import { handleClick, handleLose, handleType, handleClue } from "./handler.js";
 import { getData, wordData, scoreData, getHtml, historyData } from "./gameData.js";
 
 export let getWord = (index) => {
@@ -13,31 +15,28 @@ export let getWord = (index) => {
     getHtml('word').innerHTML = wordData.blank;
     getHtml('clue').innerHTML = wordData.clue;
     getHtml('score').innerHTML = scoreData.score;
+
+    addListener();
 }
 
 
-let lastTime;
-
-export let countTime = (time) => {
-    let timeNum = historyData.time;
-    
-    lastTime = Math.round(time / 1000);
-    getHtml('time').innerHTML = timeNum - lastTime;
-
-    if (timeNum - lastTime > 56){
-        requestAnimationFrame(countTime);
-    }
-
-    else{
+let finishTime = 1;
+setInterval(() => {
+    if (historyData.time < finishTime){
         getHtml('notif-box').style.display = "flex";
         getHtml('score2').innerHTML = scoreData.score;
 
-        requestAnimationFrame(countTime);
+        historyData.time = finishTime;
+        getHtml('time').innerHTML = historyData.time;
+
+        
     }
-}
+
+    historyData.time -= 1;
+    getHtml('time').innerHTML = historyData.time;
+}, 1000);
 
 
 getData()
 .then(data => wordData.data = data)
 .then(() => getWord(scoreData.index))
-.then(() => requestAnimationFrame(countTime))

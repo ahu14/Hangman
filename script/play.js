@@ -1,3 +1,4 @@
+import { removeListener, addListener } from "./listener.js";
 import { wordData, scoreData, historyData, getHtml } from "./gameData.js";
 import { getWord } from "./app.js";
 
@@ -55,18 +56,37 @@ export let checkWord = (key) => {
 
 
     if (!blank.includes('_')){
+        removeListener();
+
+        let keyboard = document.querySelectorAll('.keyboard-btn');
+        let usedWord = historyData.usedWord;
+
+        for (let i of keyboard){
+            if (usedWord.includes(i.innerHTML.toLowerCase())){
+                i.style.background = "red";
+            }
+        }
+
         historyData.usedWord = [];
+
         scoreData.score += 1;
         getHtml('score').innerHTML = scoreData.score;
+        getHtml('word').innerHTML = "Good One !";
 
-        scoreData.index += 1;
-        getWord(scoreData.index);
+        setTimeout(() => {
+            getHtml('word').innerHTML = wordData.blank;
+
+            scoreData.index += 1;
+            getWord(scoreData.index);
+        }, 500);
     }
 }
 
 
-export let checkType = (key) => {
+export let checkType = (target, key) => {
     if (!historyData.usedWord.includes(key)){        
+        target.style.background = "pink";
+
         historyData.usedWord.push(key);
         checkWord(key);
     }

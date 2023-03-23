@@ -1,21 +1,19 @@
-import { getWord, countTime } from "./app.js";
 import { getData, wordData, scoreData, historyData, getHtml } from "./gameData.js";
+import { handleClick, handleLose, handleType, handleClue } from "./handler.js";
 import { checkType, giveClue } from "./play.js";
+import { getWord } from "./app.js";
 
 
-window.addEventListener('click', (event) => {
-    if (event.target.className == "keyboard-btn"){
-        let key = event.target.innerHTML.toLowerCase();
-        checkType(key);
-    }
-})
+export let addListener = () => {
+    window.addEventListener('click', handleClick, false);
+    window.addEventListener('keydown', handleType, false);
+    getHtml('clue-btn').addEventListener('click', handleClue, false);
+    getHtml('refresh-btn').addEventListener('click', handleLose, false);
+}
 
-window.addEventListener('keydown', (event) => checkType(event.key));
-
-
-
-getHtml('clue-btn').addEventListener('click', () => giveClue());
-getHtml('refresh-btn').addEventListener('click', () => {
-    getHtml('notif-box').style.display = "none";
-    historyData.time = 60;
-})
+export let removeListener = () => {
+    window.removeEventListener('click', handleClick, false);
+    window.removeEventListener('keydown', handleType, false);
+    getHtml('clue-btn').removeEventListener('click', handleClue, false);
+    getHtml('refresh-btn').removeEventListener('click', handleLose, false);
+}
