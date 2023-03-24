@@ -20,9 +20,10 @@ export let giveClue = () => {
 
 export let updateImage = () => {
     if (scoreData.life >= 10){
-        console.log('gameover');
         getHtml('notif-box').style.display = "flex";
         getHtml('score2').innerHTML = scoreData.score;
+
+        removeListener();
     }
 
     else{

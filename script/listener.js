@@ -15,5 +15,4 @@ export let removeListener = () => {
     window.removeEventListener('click', handleClick, false);
     window.removeEventListener('keydown', handleType, false);
     getHtml('clue-btn').removeEventListener('click', handleClue, false);
-    getHtml('refresh-btn').removeEventListener('click', handleLose, false);
 }
