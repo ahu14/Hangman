@@ -28,7 +28,7 @@ export let updateImage = () => {
 
     else{
         scoreData.life += 1;
-        getHtml('image').src = `./assets/hangman/${scoreData.life}.jpg`;
+        getHtml('image').src = `./Assets/hangman/${scoreData.life}.jpg`;
     }
 }
 
