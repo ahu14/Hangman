@@ -36,7 +36,7 @@ export let handleLose = () => {
 
     historyData.time = 60;
 
-    getHtml('image').src = `./assets/hangman/${scoreData.life}.jpg`;
+    getHtml('image').src = `./Assets/hangman/${scoreData.life}.jpg`;
 
     let keyboard = document.querySelectorAll('.keyboard-btn');
 
