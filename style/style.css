@@ -3,11 +3,6 @@
   src: url('../assets/Inter/Inter-Regular.ttf');
 }
 
-@font-face {
-  font-family: Prata;
-  src: url('../assets/Prata/Prata-Regular.ttf');
-}
-
 
 body{
   margin: 0;
@@ -84,7 +79,7 @@ p, #clue, #score, #time{
   display: grid;
   align-content: center;
 
-  font-family: Prata;
+  font-family: Inter;
   font-size: 15px;
 
   color: #3c0f0f;
