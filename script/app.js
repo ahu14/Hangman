@@ -21,15 +21,14 @@ export let getWord = (index) => {
 
 
 let finishTime = 1;
-setInterval(() => {
+
+let timer = setInterval(() => {
     if (historyData.time < finishTime){
         getHtml('notif-box').style.display = "flex";
         getHtml('score2').innerHTML = scoreData.score;
 
         historyData.time = finishTime;
         getHtml('time').innerHTML = historyData.time;
-
-        
     }
 
     historyData.time -= 1;
