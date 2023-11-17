@@ -48,4 +48,5 @@ export let handleLose = () => {
 
     historyData.usedWord = [];
     getWord(scoreData.index);
+    window.location.reload(false);
 }

@@ -18,7 +18,7 @@ export let wordData = {
 export let scoreData = {
     index : 0,
     life : 0,
-    score : 0,
+    score : 0
 }
 
 export let historyData = {
